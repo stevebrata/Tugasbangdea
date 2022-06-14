@@ -1,7 +1,7 @@
 const username = document.getElementById('username')
 const carus = document.querySelector('.carus')
 const regis = document.querySelector('.regis')
-const starts = document.getElementById('start')
+const starts = document.querySelector('.gaz')
 const kembali = document.querySelector('.kembali')
 const level = document.querySelector('#level').value
 const logoutForm = document.getElementById('logout')
@@ -121,35 +121,17 @@ function start() {
   }
 }
 
-onload = function () {
-  const token = this.sessionStorage.getItem('token')
-  if (token && token != null) {
-    starts.style.display = "block"
-    carus.classList.toggle('d-none')
-    regis.classList.toggle('d-none')
-    document.querySelector('.tok').innerHTML = "Selamat Bermain " + token
-    document.querySelector('.kredit1').innerHTML = "Saldo Anda " + player.saldo
-    document.querySelector('.kredit2').style.display = "none"
-    document.querySelector('.kredit3').style.display = "none"
-    document.querySelector('.kredit4').classList.toggle("d-none")
-  }
-}
-
-function register() {
-  if (username.value != "" && username.value != null) {
-    player.username = username.value
-    player.register
-  }
-}
-
 function logout() {
   carus.classList.toggle('d-none')
   regis.classList.toggle('d-none')
-  player.logout
+  sessionStorage.removeItem('token')
+  location.reload()
 }
 
 kembali.onclick = function () {
   document.querySelector('.gambar').classList.toggle('d-none')
+  document.querySelector('.hadiah').src = ""
+  document.querySelector('.textHadiah').innerHTML = ""
 }
 
 document.querySelector('.modBatal').onclick = function () {
@@ -173,4 +155,58 @@ document.querySelector('.lanjut').onclick = function () {
   setTimeout(() => {
     document.querySelector('.alrt').classList.toggle('d-none')
   }, 2000);
+}
+
+
+onload = function () {
+  const token = this.sessionStorage.getItem('token')
+  if (token && token != null) {
+    carus.classList.toggle('d-none')
+    regis.classList.toggle('d-none')
+    starts.classList.toggle('d-none')
+    document.querySelector('.tok').innerHTML = "Selamat Bermain " + token
+    document.querySelector('.kredit1').innerHTML = "Saldo Anda " + player.saldo
+    document.querySelector('.kredit2').style.display = "none"
+    document.querySelector('.kredit3').style.display = "none"
+    document.querySelector('.kredit4').classList.toggle("d-none")
+    periksa()
+  }
+}
+
+function register() {
+  if (username.value != "" && username.value != null) {
+    player.username = username.value
+    const random = ~~(Math.random() * 10000)
+    const token = player.username + random.toString()
+    sessionStorage.setItem('token', token)
+    onload
+  }
+
+}
+function periksa() {
+  const level = document.querySelector('#level').value
+  if (level == 1) {
+    box1.textContent = default_option[0]
+    box2.textContent = default_option[1]
+    box3.textContent = default_option[2]
+    box4.style.display = "none"
+    box5.style.display = "none"
+
+  } else if (level == 2) {
+
+    box1.textContent = default_option[0]
+    box2.textContent = default_option[1]
+    box3.textContent = default_option[2]
+    box4.textContent = default_option[3]
+    box5.style.display = "none"
+
+  } else if (level == 3) {
+
+    box1.textContent = default_option[0]
+    box2.textContent = default_option[1]
+    box3.textContent = default_option[2]
+    box4.textContent = default_option[3]
+    box5.textContent = default_option[4]
+
+  }
 }
