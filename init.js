@@ -1,9 +1,9 @@
 const username = document.getElementById('username')
 const carus = document.querySelector('.carus')
 const regis = document.querySelector('.regis')
-const starts = document.querySelector('.gaz')
+const starts = document.getElementById('start')
 const kembali = document.querySelector('.kembali')
-const level = document.querySelector('#level').value
+
 const logoutForm = document.getElementById('logout')
 const box1 = document.getElementById('box1')
 const box2 = document.getElementById('box2')
@@ -17,7 +17,7 @@ let default_option = ["💛", "💖", "💥", "🔯", "🐱"]
 const allEqual = (arr) => arr.every((val) => val === arr[0]);
 
 function dice() {
-  const level = document.querySelector('select').value
+  const level = this.sessionStorage.getItem('level')
   let gatcha = []
   if (level == 1) {
     for (let i = 0; i < default_option.length; i++) {
@@ -49,7 +49,7 @@ function reward() {
 }
 
 function winner() {
-  const level = document.querySelector('select').value
+  const level = this.sessionStorage.getItem('level')
   if (level == 1) {
     let arr = [box1.textContent, box2.textContent, box3.textContent];
     if (allEqual(arr)) {
@@ -86,6 +86,7 @@ function winner() {
   }
 }
 function start() {
+  console.log(player.level)
   if (player.saldo != 0) {
     this.document.querySelector('.stop').toggleAttribute('disabled')
     this.document.querySelector('.startButton').toggleAttribute('disabled')
@@ -118,6 +119,48 @@ function start() {
     }
   } else {
     document.querySelector('.mod').classList.toggle('d-none')
+  }
+}
+
+onload = function () {
+  const token = this.sessionStorage.getItem('token')
+  if (token && token != null) {
+    starts.style.display = "block"
+    carus.classList.toggle('d-none')
+    regis.classList.toggle('d-none')
+    document.querySelector('.tok').innerHTML = "Selamat Bermain " + token
+    document.querySelector('.kredit1').innerHTML = "Saldo Anda " + player.saldo
+    document.querySelector('.kredit2').style.display = "none"
+    document.querySelector('.kredit3').style.display = "none"
+    document.querySelector('.kredit4').classList.toggle("d-none")
+    cek()
+  }
+}
+function cek() {
+  const level = this.sessionStorage.getItem('level')
+  if (level == 1) {
+    box1.textContent = default_option[0]
+    box2.textContent = default_option[1]
+    box3.textContent = default_option[2]
+    box4.style.display = "none"
+    box5.style.display = "none"
+
+  } else if (level == 2) {
+
+    box1.textContent = default_option[0]
+    box2.textContent = default_option[1]
+    box3.textContent = default_option[2]
+    box4.textContent = default_option[3]
+    box5.style.display = "none"
+
+  } else if (level == 3) {
+
+    box1.textContent = default_option[0]
+    box2.textContent = default_option[1]
+    box3.textContent = default_option[2]
+    box4.textContent = default_option[3]
+    box5.textContent = default_option[4]
+
   }
 }
 
@@ -158,55 +201,16 @@ document.querySelector('.lanjut').onclick = function () {
 }
 
 
-onload = function () {
-  const token = this.sessionStorage.getItem('token')
-  if (token && token != null) {
-    carus.classList.toggle('d-none')
-    regis.classList.toggle('d-none')
-    starts.classList.toggle('d-none')
-    document.querySelector('.tok').innerHTML = "Selamat Bermain " + token
-    document.querySelector('.kredit1').innerHTML = "Saldo Anda " + player.saldo
-    document.querySelector('.kredit2').style.display = "none"
-    document.querySelector('.kredit3').style.display = "none"
-    document.querySelector('.kredit4').classList.toggle("d-none")
-    periksa()
-  }
-}
-
 function register() {
   if (username.value != "" && username.value != null) {
     player.username = username.value
+    const level = document.querySelector('#level').value
+    sessionStorage.setItem('level', level)
     const random = ~~(Math.random() * 10000)
     const token = player.username + random.toString()
     sessionStorage.setItem('token', token)
-    onload
-  }
+    player.username = username.value
 
-}
-function periksa() {
-  const level = document.querySelector('#level').value
-  if (level == 1) {
-    box1.textContent = default_option[0]
-    box2.textContent = default_option[1]
-    box3.textContent = default_option[2]
-    box4.style.display = "none"
-    box5.style.display = "none"
-
-  } else if (level == 2) {
-
-    box1.textContent = default_option[0]
-    box2.textContent = default_option[1]
-    box3.textContent = default_option[2]
-    box4.textContent = default_option[3]
-    box5.style.display = "none"
-
-  } else if (level == 3) {
-
-    box1.textContent = default_option[0]
-    box2.textContent = default_option[1]
-    box3.textContent = default_option[2]
-    box4.textContent = default_option[3]
-    box5.textContent = default_option[4]
-
+    onload()
   }
 }

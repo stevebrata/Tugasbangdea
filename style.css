@@ -208,3 +208,7 @@ section {
   }
 
 }
+
+#start {
+  display: none;
+}
