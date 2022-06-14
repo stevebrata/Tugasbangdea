@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <title>Putar888</title>
+</head>
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-black navi">
+  <div class="container-md">
+    <a class="navbar-brand tok" href="">Putar888</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav ms-auto">
+        <a class="nav-link kredit1" href="">Slot</a>
+        <a class="nav-link kredit2" href="perbaikan.html">Sabung Ayam</a>
+        <a class="nav-link kredit3" href="perbaikan.html">Dadu</a>
+        <a class="nav-link kredit4 d-none" onclick="logout()" href="">Keluar</a>
+
+      </div>
+    </div>
+  </div>
+</nav>
+
+<body>
+  <audio src="enter.mp3" autoplay loop></audio>
+  <!-- carousel -->
+  <div id="carouselExampleInterval" class="carousel slide mt-5 carus" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active" data-bs-interval="4000">
+        <img src="1.jpg" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item" data-bs-interval="4000">
+        <img src="2.jpg" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item" data-bs-interval="4000">
+        <img src="3.jpg" class="d-block w-100" alt="...">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  <!-- form -->
+  <form class="regis">
+    <div class="row pt-5  justify-content-center">
+      <div class="col-4">
+        <div class="row mb-3">
+          <label for="username" class="col-sm-2 col-form-label">Nama</label>
+          <div class="col-sm-10">
+            <input type="name" class="form-control" id="username" required>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="level" class="col-sm-2 col-form-label">Level</label>
+          <div class="col-sm-10">
+            <select class="form-select" id="level" required>
+              <option value="1"> Pemula </option>
+              <option value="2"> Veteran </option>
+              <option value="3"> Maniak </option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary " onclick="register()">Daftar</button>
+      </div>
+    </div>
+  </form>
+  <section id="start">
+    <div class="con">
+      <div class="gamewrapper">
+        <div class="box" id="box1"></div>
+        <div class="box" id="box2"></div>
+        <div class="box" id="box3"></div>
+        <div class="box" id="box4"></div>
+        <div class="box" id="box5"></div>
+      </div>
+      <div class="buttonwrapper">
+        <button class="startButton blink" onclick="start()">Putar!</button>
+        <button class="stop" disabled>Tunggu</button>
+      </div>
+    </div>
+    <div class="row gambar d-none">
+      <div class="col kol">
+        <img src="" class="card-img-top hadiah" alt="...">
+        <p class="card-text textHadiah text-white text-center"></p>
+        <button type="button" class="btn btn-dark kembali">Kembali</button>
+      </div>
+    </div>
+  </section>
+  <!-- Modal -->
+  <div class="row justify-content-center text-center fixed-top mod d-none">
+    <div class="col-6 bg-transparent">
+      <div class="deposit" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content p-3">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Saldo habis</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label">Pilih Paket</label>
+                  <select class="form-select" id="depo" required>
+                    <option value="1"> Paket 1 </option>
+                    <option value="2"> Paket 2 </option>
+                    <option value="3"> Paket 3 </option>
+                  </select>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary modBatal">Batal</button>
+                  <button type="button" class="btn btn-primary lanjut ms-1 mt-1">Lanjut</button>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Alert -->
+  <div class="row justify-content-center fixed-top alrt d-none">
+    <div class=" col-6 bg-transparent">
+      <div class="alert alert- text-center bg-dark" role="alert">
+        <h4 class="alert-heading bg-dark">Selamat!</h4>
+        <p class="bg-dark">Saldo anda berhasil ditambahkan</p>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
+    </script>
+
+  <script src="modul/Player.js">
+
+  </script>
+  <script src="init.js">
+  </script>
+</body>
+
+
+</html>
