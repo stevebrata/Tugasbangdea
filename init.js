@@ -44,7 +44,7 @@ function reward() {
     .then((x) => x.json())
     .then((result) => {
       document.querySelector('.hadiah').src = result.image_link
-      document.querySelector('.textHadiah').innerHTML = 'Anda belum beruntung <br>' + result.name
+      document.querySelector('.textHadiah').innerHTML = 'Anda belum beruntung <br>Mendapatkan souvenir <br>' + result.name
     });
 }
 
@@ -55,8 +55,9 @@ function winner() {
     if (allEqual(arr)) {
       document.querySelector('audio').src = "win.mp3"
       document.querySelector('.hadiah').src = "win.png"
-      document.querySelector('.textHadiah').innerHTML = "Selamat anda Jackpot!!!"
+      document.querySelector('.textHadiah').innerHTML = "Selamat anda Jackpot!!! <br> Saldo anda bertamabh 50"
       document.querySelector('.gambar').classList.toggle('d-none')
+      player.saldo += 50
       return;
     }
     document.querySelector('.gambar').classList.toggle('d-none')
@@ -66,8 +67,9 @@ function winner() {
     if (allEqual(arr)) {
       document.querySelector('audio').src = "win.mp3"
       document.querySelector('.hadiah').src = "win.png"
-      document.querySelector('.textHadiah').innerHTML = "Selamat anda Jackpot!!!"
+      document.querySelector('.textHadiah').innerHTML = "Selamat anda Jackpot!!! <br> Saldo anda bertamabh 100"
       document.querySelector('.gambar').classList.toggle('d-none')
+      player.saldo += 100
       return;
     }
     document.querySelector('.gambar').classList.toggle('d-none')
@@ -77,8 +79,9 @@ function winner() {
     if (allEqual(arr)) {
       document.querySelector('audio').src = "win.mp3"
       document.querySelector('.hadiah').src = "win.png"
-      document.querySelector('.textHadiah').innerHTML = "Selamat anda Jackpot!!!"
+      document.querySelector('.textHadiah').innerHTML = "Selamat anda Jackpot!!! <br> Saldo anda bertamabh 200"
       document.querySelector('.gambar').classList.toggle('d-none')
+      player.saldo += 200
       return;
     }
     document.querySelector('.gambar').classList.toggle('d-none')
@@ -86,7 +89,6 @@ function winner() {
   }
 }
 function start() {
-  console.log(player.level)
   if (player.saldo != 0) {
     this.document.querySelector('.stop').toggleAttribute('disabled')
     this.document.querySelector('.startButton').toggleAttribute('disabled')
@@ -128,16 +130,19 @@ onload = function () {
     starts.style.display = "block"
     carus.classList.toggle('d-none')
     regis.classList.toggle('d-none')
+    this.document.querySelector('.prof').classList.toggle('d-none')
     document.querySelector('.tok').innerHTML = "Selamat Bermain " + token
     document.querySelector('.kredit1').innerHTML = "Saldo Anda " + player.saldo
     document.querySelector('.kredit2').style.display = "none"
     document.querySelector('.kredit3').style.display = "none"
     document.querySelector('.kredit4').classList.toggle("d-none")
+    this.document.querySelector('.gambBank').classList.toggle('d-none')
     cek()
   }
 }
 function cek() {
   const level = this.sessionStorage.getItem('level')
+  console.log(level)
   if (level == 1) {
     box1.textContent = default_option[0]
     box2.textContent = default_option[1]
@@ -167,6 +172,8 @@ function cek() {
 function logout() {
   carus.classList.toggle('d-none')
   regis.classList.toggle('d-none')
+  this.document.querySelector('.prof').classList.toggle('d-none')
+  this.document.querySelector('.gambBank').classList.toggle('d-none')
   sessionStorage.removeItem('token')
   location.reload()
 }
@@ -204,13 +211,39 @@ document.querySelector('.lanjut').onclick = function () {
 function register() {
   if (username.value != "" && username.value != null) {
     player.username = username.value
+    sessionStorage.setItem('nama', document.querySelector('#username').value)
     const level = document.querySelector('#level').value
     sessionStorage.setItem('level', level)
     const random = ~~(Math.random() * 10000)
     const token = player.username + random.toString()
     sessionStorage.setItem('token', token)
-    player.username = username.value
 
     onload()
   }
+}
+setInterval(() => {
+  document.querySelector('.depoBank').innerHTML = 'Dapatkan<br>Hadiah'
+  setTimeout(() => {
+    document.querySelector('.depoBank').innerHTML = 'Pesan<br>Sekarang'
+  }, 3000);
+}, 2000);
+
+function conKeluar() {
+  document.querySelector('.kelu').classList.toggle('d-none')
+}
+document.querySelector('.batKeluar').onclick = function () {
+  document.querySelector('.kelu').classList.toggle('d-none')
+}
+
+function ambilPro() {
+  const nama = this.sessionStorage.getItem('nama')
+  const level = this.sessionStorage.getItem('level')
+  document.querySelector('.proff').classList.toggle('d-none')
+  document.querySelector('.profText').innerHTML = "Nama : " + nama +
+    "<br> Level : " + level + "<br> Token : " + player.saldo
+
+}
+document.querySelector('.profExit').onclick = function () {
+  document.querySelector('.proff').classList.toggle('d-none')
+
 }

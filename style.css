@@ -13,7 +13,7 @@ scrollbar {
   display: none;
 }
 
-#carouselExampleInterval::before {
+/* #carouselExampleInterval::before {
   content: '';
   position: absolute;
   top: 0;
@@ -22,7 +22,7 @@ scrollbar {
   background: linear-gradient(to bottom, rgb(0, 0, 0) 20%, transparent);
   ;
   z-index: 111111;
-}
+} */
 
 #carouselExampleInterval::after {
   content: '';
@@ -38,7 +38,9 @@ body {
   font-family: cursive;
 }
 
-
+::-webkit-scrollbar {
+  display: none;
+}
 
 section {
   height: 100vh;
@@ -131,7 +133,7 @@ section {
   padding: 100px;
   text-align: center;
   background-color: rgba(7, 7, 7, 0.7);
-  z-index: 20;
+  z-index: 200000;
 }
 
 .kol,
@@ -164,6 +166,29 @@ section {
   background-color: rgba(7, 7, 7, 0.8);
 }
 
+.kelu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding-top: 200px;
+  text-align: center;
+  background-color: rgba(7, 7, 7, 0.7);
+  z-index: 200000;
+}
+
+.proff {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding-top: 200px;
+  text-align: center;
+  background-color: rgba(7, 7, 7, 0.7);
+  z-index: 200000;
+}
 
 @keyframes klikme {
   0% {
@@ -207,8 +232,106 @@ section {
     box-shadow: 0px 0px 5px 1px rgba(167, 164, 164, 0.5)
   }
 
+  .con {
+    height: 100%;
+    padding: 50px;
+    display: grid;
+    grid-template-rows: 2;
+    align-content: center;
+  }
+
+  .gamewrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+  }
+
+  .buttonwrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    justify-items: center;
+  }
+
+  .gambar div img {
+    height: 200px;
+    width: 200px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 5px 1px rgba(167, 164, 164, 0.5);
+
+  }
+
+
+  .box {
+    text-align: center;
+    font-size: 1em;
+    margin: 3px;
+    padding: 5px;
+    border: 5px solid white;
+  }
+
+
 }
 
 #start {
   display: none;
+}
+
+.bank {
+  position: relative;
+  height: 200px;
+  border-radius: 20px;
+  transform-style: preserve-3d;
+}
+
+.bank-img {
+  position: absolute;
+  max-width: 150px;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 50px);
+  transition: 0.5s;
+  background-color: transparent;
+
+}
+
+.bank:hover .bank-img {
+  transform: translate3d(-50%, -50%, 50px) scale(1.2);
+
+}
+
+.depoBank {
+  font-family: 'Bebas Neue', cursive;
+  letter-spacing: 2px;
+  animation: zoomColor 1s linear infinite alternate;
+}
+
+* {
+  font-family: 'Germania One', cursive;
+}
+
+@keyframes zoomColor {
+  0% {
+    color: aqua;
+  }
+
+  25% {
+    color: rgb(0, 255, 102);
+  }
+
+  50% {
+    color: rgb(195, 255, 0);
+  }
+
+  75% {
+    color: rgb(255, 55, 0);
+  }
+
+  100% {
+    color: rgb(255, 0, 0);
+    transform: translate3d(-50%, -50%, 50px) scale(1.5);
+  }
+}
+
+.kredit4,
+.prof {
+  cursor: pointer;
 }
