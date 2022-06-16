@@ -55,7 +55,7 @@ function winner() {
     if (allEqual(arr)) {
       document.querySelector('audio').src = "win.mp3"
       document.querySelector('.hadiah').src = "win.png"
-      document.querySelector('.textHadiah').innerHTML = "Selamat anda Jackpot!!! <br> Saldo anda bertamabh 50"
+      document.querySelector('.textHadiah').innerHTML = "Selamat anda Jackpot!!! <br> Saldo anda bertambah 50"
       document.querySelector('.gambar').classList.toggle('d-none')
       player.saldo += 50
       return;
@@ -67,7 +67,7 @@ function winner() {
     if (allEqual(arr)) {
       document.querySelector('audio').src = "win.mp3"
       document.querySelector('.hadiah').src = "win.png"
-      document.querySelector('.textHadiah').innerHTML = "Selamat anda Jackpot!!! <br> Saldo anda bertamabh 100"
+      document.querySelector('.textHadiah').innerHTML = "Selamat anda Jackpot!!! <br> Saldo anda bertambah 100"
       document.querySelector('.gambar').classList.toggle('d-none')
       player.saldo += 100
       return;
@@ -79,7 +79,7 @@ function winner() {
     if (allEqual(arr)) {
       document.querySelector('audio').src = "win.mp3"
       document.querySelector('.hadiah').src = "win.png"
-      document.querySelector('.textHadiah').innerHTML = "Selamat anda Jackpot!!! <br> Saldo anda bertamabh 200"
+      document.querySelector('.textHadiah').innerHTML = "Selamat anda Jackpot!!! <br> Saldo anda bertambah 200"
       document.querySelector('.gambar').classList.toggle('d-none')
       player.saldo += 200
       return;
